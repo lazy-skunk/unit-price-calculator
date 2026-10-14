@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { calculateUnitPrice } from "./unitPrice";
 
 type Props = {
@@ -68,7 +69,7 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
         </label>
         <div className="min-w-0">
           <span className="mb-1 block text-sm">Unit price</span>
-          <p className="break-all rounded bg-gray-700/25 p-2 tabular-nums">
+          <p className="rounded bg-gray-700/25 p-2 break-all tabular-nums">
             {result === null ? "N/A" : result.toLocaleString("en-US", { maximumFractionDigits: 2 })}
           </p>
         </div>
