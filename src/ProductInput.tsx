@@ -16,12 +16,12 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
   const invalid = (price !== "" && Number(price) < 0) || (quantity !== "" && Number(quantity) <= 0);
 
   return (
-    <section className="space-y-3 rounded bg-gray-800/50 p-4">
+    <section className="bg-foreground/3 space-y-3 rounded p-4">
       <div className="flex items-end gap-2">
         <label className="min-w-0 flex-1">
           <span className="mb-1 block text-sm">Product name (optional)</span>
           <input
-            className="w-full min-w-0 rounded bg-gray-700/25 p-2"
+            className="bg-foreground/3 w-full min-w-0 rounded p-2"
             type="text"
             placeholder={`Product ${index + 1}`}
             value={name}
@@ -29,12 +29,7 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
           />
         </label>
         <button
-          className={[
-            "rounded-full px-3 py-1 transition",
-            canRemove
-              ? "bg-red-900/50 hover:bg-red-900 active:scale-95"
-              : "bg-gray-700/25 opacity-50",
-          ].join(" ")}
+          className="disabled:bg-foreground/3 disabled:text-foreground/50 dark:disabled:bg-foreground/3 dark:disabled:text-foreground/50 cursor-pointer rounded bg-red-100 px-4 py-2 text-sm font-medium text-red-900 disabled:cursor-not-allowed disabled:active:translate-y-0 motion-safe:transition motion-safe:active:translate-y-px dark:bg-red-900 dark:text-red-100"
           type="button"
           disabled={!canRemove}
           onClick={onRemove}
@@ -46,7 +41,7 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
         <label className="min-w-0">
           <span className="mb-1 block text-sm">Price</span>
           <input
-            className="w-full min-w-0 rounded bg-gray-700/25 p-2"
+            className="bg-foreground/3 w-full min-w-0 rounded p-2"
             type="number"
             min="0"
             step="any"
@@ -58,7 +53,7 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
         <label className="min-w-0">
           <span className="mb-1 block text-sm">Quantity</span>
           <input
-            className="w-full min-w-0 rounded bg-gray-700/25 p-2"
+            className="bg-foreground/3 w-full min-w-0 rounded p-2"
             type="number"
             min="0"
             step="any"
@@ -69,7 +64,7 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
         </label>
         <div className="min-w-0">
           <span className="mb-1 block text-sm">Unit price</span>
-          <p className="rounded bg-gray-700/25 p-2 break-all tabular-nums">
+          <p className="bg-foreground/3 rounded p-2 break-all tabular-nums">
             {result === null ? "N/A" : result.toLocaleString("en-US", { maximumFractionDigits: 2 })}
           </p>
         </div>

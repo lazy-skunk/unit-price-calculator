@@ -12,10 +12,14 @@ export function App() {
   };
 
   return (
-    <main className="flex flex-col items-center gap-5 px-3 py-8">
-      <h1 className="text-3xl font-bold">Unit Price Calculator</h1>
+    <div className="bg-background text-foreground flex min-h-screen flex-col items-center gap-5 px-3 py-8">
+      <header>
+        <h1 className="text-3xl font-bold">
+          <a href="#">Unit Price Calculator</a>
+        </h1>
+      </header>
 
-      <div className="w-full max-w-xl space-y-3">
+      <main className="w-full max-w-xl space-y-3">
         {products.map((id, index) => (
           <ProductInput
             key={id}
@@ -27,13 +31,13 @@ export function App() {
           />
         ))}
         <button
-          className="rounded-full bg-green-900/50 px-3 py-1 transition hover:bg-green-900 active:scale-95"
+          className="cursor-pointer rounded bg-green-100 px-4 py-2 text-sm font-medium text-green-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
           type="button"
           onClick={addProduct}
         >
           Add product
         </button>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
