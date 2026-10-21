@@ -16,10 +16,10 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
   const invalid = (price !== "" && Number(price) < 0) || (quantity !== "" && Number(quantity) <= 0);
 
   return (
-    <section className="bg-foreground/3 space-y-3 rounded p-4">
+    <div className="bg-foreground/3 space-y-3 rounded p-4">
       <div className="flex items-end gap-2">
         <label className="min-w-0 flex-1">
-          <span className="mb-1 block text-sm">Product name (optional)</span>
+          <span className="mb-1 block text-sm font-medium">Product name (optional)</span>
           <input
             className="bg-foreground/3 w-full min-w-0 rounded p-2"
             type="text"
@@ -39,7 +39,7 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
       </div>
       <div className="grid grid-cols-3 gap-3">
         <label className="min-w-0">
-          <span className="mb-1 block text-sm">Price</span>
+          <span className="mb-1 block text-sm font-medium">Price</span>
           <input
             className="bg-foreground/3 w-full min-w-0 rounded p-2"
             type="number"
@@ -51,7 +51,7 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
           />
         </label>
         <label className="min-w-0">
-          <span className="mb-1 block text-sm">Quantity</span>
+          <span className="mb-1 block text-sm font-medium">Quantity</span>
           <input
             className="bg-foreground/3 w-full min-w-0 rounded p-2"
             type="number"
@@ -63,17 +63,17 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
           />
         </label>
         <div className="min-w-0">
-          <span className="mb-1 block text-sm">Unit price</span>
+          <span className="mb-1 block text-sm font-medium">Unit price</span>
           <p className="bg-foreground/3 rounded p-2 break-all tabular-nums">
             {result === null ? "N/A" : result.toLocaleString("en-US", { maximumFractionDigits: 2 })}
           </p>
         </div>
       </div>
       {invalid && (
-        <p className="text-sm text-red-700">
+        <p className="text-sm text-red-700 dark:text-red-300">
           Price must be zero or greater. Quantity must be greater than zero.
         </p>
       )}
-    </section>
+    </div>
   );
 }

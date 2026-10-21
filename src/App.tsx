@@ -14,7 +14,7 @@ export function App() {
   return (
     <div className="bg-background text-foreground flex min-h-screen flex-col items-center gap-5 px-3 py-8">
       <header>
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-lg font-semibold">
           <a href="#">Unit Price Calculator</a>
         </h1>
       </header>
