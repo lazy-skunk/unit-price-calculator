@@ -12,14 +12,14 @@ export function App() {
   };
 
   return (
-    <div className="bg-background text-foreground flex min-h-screen flex-col items-center gap-5 px-3 py-8">
+    <div className="bg-background text-foreground flex min-h-screen flex-col items-center gap-6 p-6">
       <header>
         <h1 className="text-lg font-semibold">
           <a href="#">Unit Price Calculator</a>
         </h1>
       </header>
 
-      <main className="w-full max-w-xl space-y-3">
+      <main className="w-full max-w-xl space-y-4">
         {products.map((id, index) => (
           <ProductInput
             key={id}
