@@ -3,12 +3,11 @@ import { useState } from "react";
 import { calculateUnitPrice } from "./unitPrice";
 
 type Props = {
-  index: number;
   canRemove: boolean;
   onRemove: () => void;
 };
 
-export default function ProductInput({ index, canRemove, onRemove }: Props) {
+export default function ProductInput({ canRemove, onRemove }: Props) {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [name, setName] = useState("");
@@ -16,20 +15,19 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
   const invalid = (price !== "" && Number(price) < 0) || (quantity !== "" && Number(quantity) <= 0);
 
   return (
-    <div className="bg-foreground/3 space-y-4 rounded p-4">
+    <div className="bg-foreground/3 grid gap-4 rounded p-4">
       <div className="flex items-end gap-2">
-        <label className="min-w-0 flex-1">
-          <span className="mb-2 block text-sm font-medium">Product name (optional)</span>
+        <label className="grid min-w-0 flex-1 gap-2">
+          <span>Product name (optional)</span>
           <input
-            className="bg-foreground/3 w-full min-w-0 rounded p-2"
+            className="bg-foreground/3 hover:bg-foreground/6 min-w-0 rounded p-2 motion-safe:transition-colors"
             type="text"
-            placeholder={`Product ${index + 1}`}
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
         </label>
         <button
-          className="disabled:bg-foreground/3 disabled:text-foreground/50 dark:disabled:bg-foreground/3 dark:disabled:text-foreground/50 cursor-pointer rounded bg-red-100 px-4 py-2 text-sm font-medium text-red-900 disabled:cursor-not-allowed disabled:active:translate-y-0 motion-safe:transition motion-safe:active:translate-y-px dark:bg-red-900 dark:text-red-100"
+          className="disabled:bg-foreground/3 disabled:text-foreground/50 dark:disabled:bg-foreground/3 dark:disabled:text-foreground/50 cursor-pointer rounded bg-red-100 px-4 py-2 text-red-900 disabled:cursor-not-allowed disabled:active:translate-y-0 motion-safe:transition motion-safe:active:translate-y-px dark:bg-red-900 dark:text-red-100"
           type="button"
           disabled={!canRemove}
           onClick={onRemove}
@@ -38,10 +36,10 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
         </button>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        <label className="min-w-0">
-          <span className="mb-2 block text-sm font-medium">Price</span>
+        <label className="grid min-w-0 gap-2">
+          <span>Price</span>
           <input
-            className="bg-foreground/3 w-full min-w-0 rounded p-2"
+            className="bg-foreground/3 hover:bg-foreground/6 min-w-0 rounded p-2 motion-safe:transition-colors"
             type="number"
             min="0"
             step="any"
@@ -50,10 +48,10 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
             onChange={(event) => setPrice(event.target.value)}
           />
         </label>
-        <label className="min-w-0">
-          <span className="mb-2 block text-sm font-medium">Quantity</span>
+        <label className="grid min-w-0 gap-2">
+          <span>Quantity</span>
           <input
-            className="bg-foreground/3 w-full min-w-0 rounded p-2"
+            className="bg-foreground/3 hover:bg-foreground/6 min-w-0 rounded p-2 motion-safe:transition-colors"
             type="number"
             min="0"
             step="any"
@@ -62,18 +60,20 @@ export default function ProductInput({ index, canRemove, onRemove }: Props) {
             onChange={(event) => setQuantity(event.target.value)}
           />
         </label>
-        <div className="min-w-0">
-          <span className="mb-2 block text-sm font-medium">Unit price</span>
+        <div className="grid min-w-0 gap-2">
+          <span>Unit price</span>
           <p className="bg-foreground/3 rounded p-2 break-all tabular-nums">
             {result === null ? "N/A" : result.toLocaleString("en-US", { maximumFractionDigits: 2 })}
           </p>
         </div>
       </div>
-      {invalid && (
-        <p className="text-sm text-red-700 dark:text-red-300">
-          Price must be zero or greater. Quantity must be greater than zero.
-        </p>
-      )}
+      <div role="alert" className="empty:absolute">
+        {invalid && (
+          <p className="text-red-500 motion-safe:transition-opacity motion-safe:starting:opacity-0">
+            Price must be zero or greater. Quantity must be greater than zero.
+          </p>
+        )}
+      </div>
     </div>
   );
 }
